@@ -51,3 +51,13 @@ SimpleTriggerKeys=VK_Z
 # bug report with the log.
 
 EnableLogging=False
+
+# This setting enables the output of Additional Direction text following the heading degrees
+# i.e.: N,S,W,E,NE,SE,SSE ...
+#
+# 0 = Disabled
+# 1 = N,S,W,E
+# 2 = N,NE,E,SE, ...
+# 3 = N,NNE,NE,ENE,E, ...
+
+PreciseHDG=3

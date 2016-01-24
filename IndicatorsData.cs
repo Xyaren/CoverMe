@@ -73,5 +73,32 @@ namespace CoverMe
 		public int getHeading() {
 			return (int)this.compass;
 		}
+		
+		
+		/// <summary>
+		/// Array of directions clockwise beginning with north (N to NNW)
+		/// </summary>
+	    static String[] directions = {"N","NNE","NE","ENE","E","ESE","SE","SSE","S","SSW","SW","WSW","W","WNW","NW","NNW"};    
+	    
+	    /// <summary>
+		/// Returns a direction based on the heading
+		/// </summary>
+		/// <param name="detail">the level of detail 0=null 1=N 2=NW 3=NNW</param>
+		/// <returns>1-3 character string</returns>
+   		public string getAdvancedHeading(int detail){
+			//filter invalid detail level
+	    	if(detail==0 || detail > 3)
+	    		return null;
+	    	
+	    	int factor = (int) Math.Pow(2,3-(detail));
+	    	// calculate array Index for HDG
+	    	int index = (int) Math.Round((this.compass) / (360/(directions.Length/factor)));
+	      
+	    	//Prevent Out of bounds
+	        if(index > directions.Length/factor)
+	            index-=directions.Length/factor;
+	     
+        	return directions[index*factor];
+   		}
 	}
 }

@@ -43,6 +43,8 @@ namespace CoverMe
 		bool lowFPSmode = false;
 		bool enableLogging = false;
 		
+		int preciseHDG = 3;
+		
 		public MainForm()
 		{
 			InitializeComponent();
@@ -74,6 +76,10 @@ namespace CoverMe
 				
 				lowFPSmode = Boolean.Parse(Properties.GetSetting("LowFpsMode", "False"));
 				Logger.log("Loaded setting LowFpsMode=" + lowFPSmode.ToString());
+				
+				preciseHDG = Int32.Parse(Properties.GetSetting("PreciseHDG", "3"));
+				Logger.log("Loaded setting PreciseHDG=" + preciseHDG.ToString());
+				
 				
 				SpecialKeyHelper.StrokeDelay = lowFPSmode ? 200 : 50;
 				
@@ -191,6 +197,12 @@ namespace CoverMe
 					{
 						sb.Append(" HDG ");
 						sb.Append(hdg);
+						
+						if(preciseHDG > 0){
+							sb.AppendFormat("({0})",data.getAdvancedHeading(preciseHDG));
+						}else{
+							Logger.log("-> AdvancedHeading        = Disabled (Or over 3)");
+						}
 					}
 					else
 					{
