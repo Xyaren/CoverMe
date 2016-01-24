@@ -43,6 +43,8 @@ namespace CoverMe
 		bool lowFPSmode = false;
 		bool enableLogging = false;
 		
+		int roundPrecision = 2;
+		
 		public MainForm()
 		{
 			InitializeComponent();
@@ -74,6 +76,9 @@ namespace CoverMe
 				
 				lowFPSmode = Boolean.Parse(Properties.GetSetting("LowFpsMode", "False"));
 				Logger.log("Loaded setting LowFpsMode=" + lowFPSmode.ToString());
+				
+				roundPrecision = Int32.Parse(Properties.GetSetting("RoundPrecision", "2"));
+				Logger.log("Loaded setting RoundPrecision=" + roundPrecision.ToString());
 				
 				SpecialKeyHelper.StrokeDelay = lowFPSmode ? 200 : 50;
 				
@@ -174,12 +179,12 @@ namespace CoverMe
 				{
 					Logger.log("Altitude is exceeding the reasonable range, aborting");
 					return false;
-				}
+				}	
 				
 				StringBuilder sb = new StringBuilder();
-				sb.Append(Helpers.RoundPreDecimal(i_alt_in_m, 2));
+				sb.Append(Helpers.RoundPreDecimal(i_alt_in_m, roundPrecision));
 				sb.Append(" m / ");
-				sb.Append(Helpers.RoundPreDecimal(i_alt_in_ft, 2));
+				sb.Append(Helpers.RoundPreDecimal(i_alt_in_ft, roundPrecision));
 				sb.Append(" ft");
 				
 				if (typeHeading) {

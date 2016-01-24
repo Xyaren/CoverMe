@@ -51,3 +51,8 @@ SimpleTriggerKeys=VK_Z
 # bug report with the log.
 
 EnableLogging=False
+
+# The following setting allows to define the number of decimals to be rounded for
+# the altitude output
+
+RoundPrecision=2
