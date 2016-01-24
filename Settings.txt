@@ -50,4 +50,11 @@ SimpleTriggerKeys=VK_Z
 # Change to 'True' if you are experiencing errors or bugs and want to send me a
 # bug report with the log.
 
-EnableLogging=False
+EnableLogging=True
+
+# The following setting allows you to specify a (different) hostname or IP for the
+# WarThunder web-service
+# default is "localhost"
+# In some cases, using an ip may improve performance by a tiny bit.
+
+hostname=localhost

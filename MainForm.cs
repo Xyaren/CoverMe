@@ -43,6 +43,8 @@ namespace CoverMe
 		bool lowFPSmode = false;
 		bool enableLogging = false;
 		
+		String hostname = "localhost";
+		
 		public MainForm()
 		{
 			InitializeComponent();
@@ -74,6 +76,9 @@ namespace CoverMe
 				
 				lowFPSmode = Boolean.Parse(Properties.GetSetting("LowFpsMode", "False"));
 				Logger.log("Loaded setting LowFpsMode=" + lowFPSmode.ToString());
+				
+				hostname = Properties.GetSetting("hostname", "localhost");
+				Logger.log("Loaded setting hostname=" + hostname);
 				
 				SpecialKeyHelper.StrokeDelay = lowFPSmode ? 200 : 50;
 				
@@ -148,7 +153,7 @@ namespace CoverMe
 			try {
 				Logger.log("Querying JSON-file for indicators");
 				
-				string content = RemoteFile.Fetch("http://localhost:8111/indicators");
+				string content = RemoteFile.Fetch("http://"+hostname+":8111/indicators");
 
 				Logger.log("Succesfully retrieved JSON-file");
 				
