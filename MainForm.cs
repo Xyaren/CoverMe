@@ -45,6 +45,8 @@ namespace CoverMe
 		
 		int preciseHDG = 3;
 		
+		String hostname = "localhost";
+		
 		public MainForm()
 		{
 			InitializeComponent();
@@ -79,8 +81,10 @@ namespace CoverMe
 				
 				preciseHDG = Int32.Parse(Properties.GetSetting("PreciseHDG", "3"));
 				Logger.log("Loaded setting PreciseHDG=" + preciseHDG.ToString());
-				
-				
+
+				hostname = Properties.GetSetting("hostname", "localhost");
+				Logger.log("Loaded setting hostname=" + hostname);
+
 				SpecialKeyHelper.StrokeDelay = lowFPSmode ? 200 : 50;
 				
 				coverMeTimeoutWatch = Stopwatch.StartNew();
@@ -154,7 +158,7 @@ namespace CoverMe
 			try {
 				Logger.log("Querying JSON-file for indicators");
 				
-				string content = RemoteFile.Fetch("http://localhost:8111/indicators");
+				string content = RemoteFile.Fetch("http://"+hostname+":8111/indicators");
 
 				Logger.log("Succesfully retrieved JSON-file");
 				

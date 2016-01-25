@@ -52,6 +52,13 @@ SimpleTriggerKeys=VK_Z
 
 EnableLogging=False
 
+# The following setting allows you to specify a (different) hostname or IP for the
+# WarThunder web-service
+# default is "localhost"
+# In some cases, using an ip may improve performance by a tiny bit.
+
+hostname=localhost
+
 # This setting enables the output of Additional Direction text following the heading degrees
 # i.e.: N,S,W,E,NE,SE,SSE ...
 #
@@ -61,3 +68,5 @@ EnableLogging=False
 # 3 = N,NNE,NE,ENE,E, ...
 
 PreciseHDG=3
+
+
