@@ -69,4 +69,7 @@ hostname=localhost
 
 PreciseHDG=3
 
+# The following setting allows to define the number of decimals to be rounded for
+# the altitude output
 
+RoundPrecision=2

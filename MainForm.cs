@@ -47,6 +47,8 @@ namespace CoverMe
 		
 		String hostname = "localhost";
 		
+		int roundPrecision = 2;
+		
 		public MainForm()
 		{
 			InitializeComponent();
@@ -85,6 +87,9 @@ namespace CoverMe
 				hostname = Properties.GetSetting("hostname", "localhost");
 				Logger.log("Loaded setting hostname=" + hostname);
 
+				roundPrecision = Int32.Parse(Properties.GetSetting("RoundPrecision", "2"));
+				Logger.log("Loaded setting RoundPrecision=" + roundPrecision.ToString());
+				
 				SpecialKeyHelper.StrokeDelay = lowFPSmode ? 200 : 50;
 				
 				coverMeTimeoutWatch = Stopwatch.StartNew();
@@ -184,12 +189,12 @@ namespace CoverMe
 				{
 					Logger.log("Altitude is exceeding the reasonable range, aborting");
 					return false;
-				}
+				}	
 				
 				StringBuilder sb = new StringBuilder();
-				sb.Append(Helpers.RoundPreDecimal(i_alt_in_m, 2));
+				sb.Append(Helpers.RoundPreDecimal(i_alt_in_m, roundPrecision));
 				sb.Append(" m / ");
-				sb.Append(Helpers.RoundPreDecimal(i_alt_in_ft, 2));
+				sb.Append(Helpers.RoundPreDecimal(i_alt_in_ft, roundPrecision));
 				sb.Append(" ft");
 				
 				if (typeHeading) {
